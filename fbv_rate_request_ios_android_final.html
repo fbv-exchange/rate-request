@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FBV | درخواست نرخ ارز</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f4f7fb;color:#14213d}
+.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:100%;max-width:480px;background:#fff;border-radius:28px;box-shadow:0 18px 55px #14213d18;overflow:hidden}
+.top{padding:28px 26px 22px;background:linear-gradient(145deg,#071a36,#123968);color:white}
+.brand{font-size:14px;letter-spacing:2px;opacity:.8}.top h1{margin:12px 0 7px;font-size:25px}.top p{margin:0;color:#dce8f7;font-size:13px;line-height:1.9}
+.body{padding:24px 22px 26px}.label{font-size:13px;font-weight:bold;margin:18px 0 10px;display:block}
+.segment{display:grid;grid-template-columns:1fr 1fr;gap:10px}.seg{border:1px solid #dbe3ed;border-radius:14px;padding:13px;background:#fff;cursor:pointer;font-size:14px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.seg.active{border-color:#0d63d8;background:#eef6ff;color:#075bc7;font-weight:bold}
+.currencies{display:grid;grid-template-columns:1fr 1fr;gap:10px}.currency{border:1px solid #dbe3ed;border-radius:15px;padding:12px;background:#fff;cursor:pointer;text-align:right;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.currency.active{border-color:#0d63d8;background:#eef6ff}.code{font-weight:bold;font-size:14px}.name{font-size:11px;color:#78869a;margin-top:5px}
+input{width:100%;border:1px solid #dbe3ed;border-radius:15px;padding:16px;font-size:20px;outline:none;text-align:center;color:#14213d}input:focus{border-color:#0d63d8}
+.quick{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.quick button{border:1px solid #dbe3ed;background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-family:inherit;font-size:11px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.submit{width:100%;margin-top:22px;border:0;border-radius:16px;padding:16px;background:#0d63d8;color:#fff;font-family:inherit;font-weight:bold;font-size:15px;cursor:pointer;box-shadow:0 8px 20px #0d63d833;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.note{text-align:center;color:#7a8798;font-size:10px;margin-top:12px;line-height:1.8}
+.success{display:none;text-align:center;padding:36px 20px}.success .icon{font-size:44px}.success h2{margin:15px 0 8px}.success p{color:#68778b;font-size:13px;line-height:2}.req{background:#f5f8fc;border-radius:16px;padding:15px;text-align:right;line-height:2;font-size:13px;margin:20px 0}
+.back{border:1px solid #dbe3ed;background:#fff;border-radius:14px;padding:13px 20px;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(max-width:380px){.body{padding:20px 16px}.top{padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="wrap"><main class="card">
+<section class="top">
+<div class="brand">FBV</div>
+<h1>درخواست نرخ ارز</h1>
+<p>ارز و مبلغ موردنظر خود را انتخاب کنید تا درخواست شما برای بررسی و اعلام نرخ ارسال شود.</p>
+</section>
+
+<section class="body" id="form">
+<label class="label">نوع معامله</label>
+<div class="segment">
+<button type="button" class="seg active" data-type="خرید ارز">خرید ارز</button>
+<button type="button" class="seg" data-type="فروش ارز">فروش ارز</button>
+</div>
+
+<label class="label">انتخاب ارز</label>
+<div class="currencies">
+<button type="button" class="currency active" data-code="AED" data-name="درهم امارات"><div class="code">🇦🇪 AED</div><div class="name">درهم امارات</div></button>
+<button type="button" class="currency" data-code="USD" data-name="دلار آمریکا"><div class="code">🇺🇸 USD</div><div class="name">دلار آمریکا</div></button>
+<button type="button" class="currency" data-code="EUR" data-name="یورو"><div class="code">🇪🇺 EUR</div><div class="name">یورو</div></button>
+<button type="button" class="currency" data-code="GBP" data-name="پوند انگلیس"><div class="code">🇬🇧 GBP</div><div class="name">پوند انگلیس</div></button>
+<button type="button" class="currency" data-code="TRY" data-name="لیر ترکیه"><div class="code">🇹🇷 TRY</div><div class="name">لیر ترکیه</div></button>
+<button type="button" class="currency" data-code="OTHER" data-name="سایر ارزها"><div class="code">＋ سایر</div><div class="name">ارز موردنظر</div></button>
+</div>
+
+<label class="label">مبلغ موردنظر</label>
+<input id="amount" inputmode="numeric" placeholder="مثلاً ۵۰٬۰۰۰" aria-label="مبلغ">
+<div class="quick">
+<button type="button" data-amount="10000">۱۰٬۰۰۰</button><button type="button" data-amount="20000">۲۰٬۰۰۰</button><button type="button" data-amount="50000">۵۰٬۰۰۰</button><button type="button" data-amount="100000">۱۰۰٬۰۰۰</button><button type="button" data-amount="">مبلغ دلخواه</button>
+</div>
+
+<button type="button" class="submit" id="submit">ارسال درخواست نرخ ←</button>
+<div class="note">نرخ پس از بررسی درخواست توسط صرافی اعلام می‌شود.</div>
+</section>
+
+<section class="success" id="success">
+<div class="icon">✓</div>
+<h2>درخواست شما آماده شد</h2>
+<p>برای ارسال درخواست، دکمه زیر را بزنید.</p>
+<div class="req" id="summary"></div>
+<a class="submit" id="whatsapp" href="#" role="button" style="display:block;text-decoration:none;text-align:center;">📱 باز کردن واتساپ</a>
+<div class="note">مخصوص Android و iPhone · متن درخواست داخل واتساپ آماده می‌شود.</div>
+<button type="button" class="back" id="back">ثبت درخواست جدید</button>
+</section>
+</main></div>
+<script>
+(function(){
+  'use strict';
+  let type='خرید ارز', code='AED', name='درهم امارات', lastRequest='';
+  const whatsappNumber='989937220068';
+  const fmt=n=>n?Number(String(n).replace(/\D/g,'')).toLocaleString('fa-IR'):'';
+  const qs=s=>document.querySelector(s), qsa=s=>Array.prototype.slice.call(document.querySelectorAll(s));
+
+  qsa('.seg').forEach(function(b){b.addEventListener('click',function(){
+    qsa('.seg').forEach(x=>x.classList.remove('active')); b.classList.add('active'); type=b.dataset.type;
+  },false);});
+  qsa('.currency').forEach(function(b){b.addEventListener('click',function(){
+    qsa('.currency').forEach(x=>x.classList.remove('active')); b.classList.add('active'); code=b.dataset.code; name=b.dataset.name;
+  },false);});
+  qsa('.quick button').forEach(function(b){b.addEventListener('click',function(){qs('#amount').value=fmt(b.dataset.amount);},false);});
+  qs('#amount').addEventListener('input',function(e){e.target.value=fmt(e.target.value);},false);
+
+  qs('#submit').addEventListener('click',function(){
+    const amount=qs('#amount').value;
+    if(!amount){qs('#amount').focus();return;}
+    const id=Math.floor(1000+Math.random()*9000);
+    lastRequest='سلام، درخواست نرخ ارز دارم.\n\n📌 شماره درخواست: #'+id+'\n💱 نوع معامله: '+type+'\n💵 ارز: '+name+' ('+code+')\n🔢 مبلغ: '+amount+'\n\nلطفاً نرخ روز را اعلام بفرمایید.';
+    qs('#summary').innerHTML='<b>شماره درخواست:</b> #'+id+'<br><b>نوع معامله:</b> '+type+'<br><b>ارز:</b> '+name+' ('+code+')<br><b>مبلغ:</b> '+amount;
+    qs('#form').style.display='none'; qs('#success').style.display='block';
+  },false);
+
+  qs('#whatsapp').addEventListener('click',function(e){
+    e.preventDefault();
+    const url='https://wa.me/'+whatsappNumber+'?text='+encodeURIComponent(lastRequest);
+    window.location.assign(url);
+  },false);
+
+  qs('#back').addEventListener('click',function(){qs('#success').style.display='none';qs('#form').style.display='block';},false);
+})();
+</script>
+</body></html>
